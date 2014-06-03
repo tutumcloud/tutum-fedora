@@ -1,4 +1,4 @@
-FROM fedora:20
+FROM fedora:latest
 MAINTAINER Fernando Mayo <fernando@tutum.co>
 
 # Install packages and set up sshd
