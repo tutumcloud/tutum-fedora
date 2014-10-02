@@ -7,9 +7,16 @@ Simple Fedora docker image with SSH access
 Usage
 -----
 
-To create the image `tutum/fedora`, execute the following commands on the tutum-fedora folder:
+To create the image `tutum/fedora` with one tag per Fedora release, execute the following commands on the tutum-fedora repository folder:
 
-	docker build -t tutum/fedora:20 20/
+	git checkout master
+	docker build -t tutum/fedora:latest .
+
+	git checkout 20
+	docker build -t tutum/fedora:20 .
+
+	git checkout 21
+	docker build -t tutum/fedora:21 .
 
 
 Running tutum/fedora
@@ -17,7 +24,7 @@ Running tutum/fedora
 
 Run a container from the image you created earlier binding it to port 2222 in all interfaces:
 
-	sudo docker run -d -p 2222:22 tutum/fedora:20
+	sudo docker run -d -p 2222:22 tutum/fedora
 
 The first time that you run your container, a random password will be generated
 for user `root`. To get the password, check the logs of the container by running:
@@ -46,5 +53,5 @@ Setting a specific password for the root account
 If you want to use a preset password instead of a random generated one, you can
 set the environment variable `ROOT_PASS` to your specific password when running the container:
 
-	docker run -d -p 2222:22 -e ROOT_PASS="mypass" tutum/fedora:20
+	docker run -d -p 2222:22 -e ROOT_PASS="mypass" tutum/fedora
 
