@@ -9,14 +9,11 @@ Usage
 
 To create the image `tutum/fedora` with one tag per Fedora release, execute the following commands on the tutum-fedora repository folder:
 
-	git checkout master
 	docker build -t tutum/fedora:latest .
 
-	git checkout 20
-	docker build -t tutum/fedora:20 .
+	docker build -t tutum/fedora:20 20
 
-	git checkout 21
-	docker build -t tutum/fedora:21 .
+	docker build -t tutum/fedora:21 21
 
 
 Running tutum/fedora
@@ -46,7 +43,6 @@ In this case, `U0iSGVUCr7W3` is the password allocated to the `root` user.
 
 Done!
 
-
 Setting a specific password for the root account
 ------------------------------------------------
 
@@ -55,3 +51,12 @@ set the environment variable `ROOT_PASS` to your specific password when running 
 
 	docker run -d -p 2222:22 -e ROOT_PASS="mypass" tutum/fedora
 
+
+Adding authorized keys
+----------------------
+
+If you want to use ssh key for login, you can use `AUTHORIZED_KEYS` environment variable. The public keys are separated by `,`:
+
+    docker run -d -p 2222:22 AUTHORIZED_KEYS="pubkey1, pubkey2, pubkey3" tutum/centos:centos7
+
+If you put the corresponding private key under `~/.ssh/` where you run ssh command, you will not be asked to input the password.
