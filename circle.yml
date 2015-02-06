@@ -3,8 +3,14 @@ machine:
     - docker
 dependencies:
   override:
-    - docker build -t sut .
+    - docker build -t fedora .
+    - docker build -t fedora20 20
+    - docker build -t fedora21 21
 test:
   override:
-    - docker run -d -p 2202:22 sut; sleep 10
+    - docker run -d -p 2202:22 fedora
+    - docker run -d -p 2203:22 fedora20
+    - docker run -d -p 2204:22 fedora21
     - nc -z 127.0.0.1 2202
+    - nc -z 127.0.0.1 2203
+    - nc -z 127.0.0.1 2204
