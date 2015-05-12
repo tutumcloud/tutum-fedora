@@ -1,6 +1,8 @@
 tutum-fedora
 ============
 
+[![Deploy to Tutum](https://s.tutum.co/deploy-to-tutum.svg)](https://dashboard.tutum.co/stack/deploy/)
+
 Simple Fedora docker image with SSH access
 
 
@@ -56,4 +58,3 @@ Adding SSH authorized keys
 If you want to use your SSH key to login, you can use the `AUTHORIZED_KEYS` environment variable. You can add more than one public key separating them by `,`:
 
     docker run -d -p 2222:22 -e AUTHORIZED_KEYS="`cat ~/.ssh/id_rsa.pub`" tutum/fedora:latest
-
